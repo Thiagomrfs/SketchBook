@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">SketchBook</string>
+    <string name="app_name">Sketch Book</string>
+    <string name="new_account"><u>Cadastrar nova conta</u></string>
+    <string name="return_login"><u>Fazer login</u></string>
 </resources>
