@@ -74,6 +74,7 @@
             android:layout_height="wrap_content"
             android:backgroundTint="@color/orangeButtons"
             android:fontFamily="@font/boogaloo"
+            android:onClick="checarLogin"
             android:text="Entrar"
             android:textAlignment="center"
             android:textColor="@color/mainText"
