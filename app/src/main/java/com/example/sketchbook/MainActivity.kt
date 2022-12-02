@@ -8,6 +8,10 @@ import android.view.View
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 
 class MainActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
@@ -22,6 +26,8 @@ class MainActivity : AppCompatActivity() {
 
         email = findViewById(R.id.editTextEmail)
         senha = findViewById(R.id.editTextPassword)
+
+        lerUmUsuario()
     }
 
     fun goToCreateAccount(v: View){
@@ -29,7 +35,25 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    fun lerUmUsuario() {
+        val mydb = FirebaseDatabase.getInstance().reference
+        val myUsers = mydb.child("usuarios")
+        val myItens = mydb.child("desenhos")
 
+
+        myItens.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val post = dataSnapshot.value
+                Log.d("PDM", post.toString())
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                // Getting Post failed, log a message
+                Log.d("PDM", "loadPost:onCancelled", databaseError.toException())
+            }
+        })
+
+    }
 
     fun checarLogin(v: View) {
         auth.signInWithEmailAndPassword(email.text.toString(), senha.text.toString())
@@ -38,6 +62,7 @@ class MainActivity : AppCompatActivity() {
                 val user = auth.currentUser
                 Toast.makeText(baseContext, "Autenticação deu certo",
                     Toast.LENGTH_SHORT).show()
+                Log.d("PDM", user?.uid.toString())
             } else {
                 Log.w("PDM", "createUserWithEmail:failure", task.exception)
                 Toast.makeText(baseContext, "Autenticação falha",

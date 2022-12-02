@@ -101,6 +101,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/orangeButtons"
                 android:fontFamily="@font/boogaloo"
+                android:onClick="createAccount"
                 android:text="Cadastrar"
                 android:textAlignment="center"
                 android:textColor="@color/mainText"
