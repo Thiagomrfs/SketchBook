@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#EAD4BD"
-    android:onClick="goToCreateAccount"
     tools:context=".MainActivity">
 
     <TextView
@@ -55,7 +54,9 @@
             android:ems="10"
             android:hint="E-mail"
             android:inputType="textEmailAddress"
-            android:paddingHorizontal="10dp" />
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/mainText"
+            android:textColorHint="@color/mainText" />
 
         <EditText
             android:id="@+id/editTextPassword"
@@ -66,7 +67,9 @@
             android:ems="10"
             android:hint="Senha"
             android:inputType="textPassword"
-            android:paddingHorizontal="10dp" />
+            android:paddingHorizontal="10dp"
+            android:textColor="@color/mainText"
+            android:textColorHint="@color/mainText" />
 
         <Button
             android:id="@+id/loginButton"
