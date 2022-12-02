@@ -29,6 +29,8 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+
+
     fun checarLogin(v: View) {
         auth.signInWithEmailAndPassword(email.text.toString(), senha.text.toString())
             .addOnCompleteListener(this) { task ->

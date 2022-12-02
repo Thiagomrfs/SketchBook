@@ -51,6 +51,8 @@
                 android:background="@drawable/edit_text"
                 android:ems="10"
                 android:hint="E-mail"
+                android:textColor="@color/mainText"
+                android:textColorHint="@color/mainText"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="10dp" />
 
@@ -62,6 +64,8 @@
                 android:background="@drawable/edit_text"
                 android:ems="10"
                 android:hint="Endereço"
+                android:textColor="@color/mainText"
+                android:textColorHint="@color/mainText"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="10dp" />
 
@@ -73,7 +77,9 @@
                 android:background="@drawable/edit_text"
                 android:ems="10"
                 android:hint="Número de celular"
-                android:inputType="textEmailAddress"
+                android:textColor="@color/mainText"
+                android:textColorHint="@color/mainText"
+                android:inputType="phone"
                 android:paddingHorizontal="10dp" />
 
             <EditText
@@ -84,6 +90,8 @@
                 android:background="@drawable/edit_text"
                 android:ems="10"
                 android:hint="Senha"
+                android:textColor="@color/mainText"
+                android:textColorHint="@color/mainText"
                 android:inputType="textPassword"
                 android:paddingHorizontal="10dp" />
 
