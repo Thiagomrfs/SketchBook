@@ -26,8 +26,6 @@ class MainActivity : AppCompatActivity() {
 
         email = findViewById(R.id.editTextEmail)
         senha = findViewById(R.id.editTextPassword)
-
-        lerUmUsuario()
     }
 
     fun goToCreateAccount(v: View){
@@ -35,34 +33,13 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    fun lerUmUsuario() {
-        val mydb = FirebaseDatabase.getInstance().reference
-        val myUsers = mydb.child("usuarios")
-        val myItens = mydb.child("desenhos")
-
-
-        myItens.addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val post = dataSnapshot.value
-                Log.d("PDM", post.toString())
-            }
-
-            override fun onCancelled(databaseError: DatabaseError) {
-                // Getting Post failed, log a message
-                Log.d("PDM", "loadPost:onCancelled", databaseError.toException())
-            }
-        })
-
-    }
-
     fun checarLogin(v: View) {
         auth.signInWithEmailAndPassword(email.text.toString(), senha.text.toString())
             .addOnCompleteListener(this) { task ->
             if (task.isSuccessful) {
                 val user = auth.currentUser
-                Toast.makeText(baseContext, "Autenticação deu certo",
-                    Toast.LENGTH_SHORT).show()
-                Log.d("PDM", user?.uid.toString())
+                val intent = Intent(this, Galery::class.java)
+                startActivity(intent)
             } else {
                 Log.w("PDM", "createUserWithEmail:failure", task.exception)
                 Toast.makeText(baseContext, "Autenticação falha",
