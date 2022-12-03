@@ -14,8 +14,6 @@ class Galery : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_galery)
         auth = FirebaseAuth.getInstance()
-
-        Log.d("PDM", auth.currentUser?.email.toString())
     }
 
     fun goToCriarDesenho(v: View){

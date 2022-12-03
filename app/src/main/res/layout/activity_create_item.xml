@@ -23,7 +23,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.483"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/createItemImage">
 
             <EditText
                 android:id="@+id/createItemName"
@@ -33,10 +34,10 @@
                 android:background="@drawable/edit_text"
                 android:ems="10"
                 android:hint="Nome do Item"
-                android:textColor="@color/mainText"
-                android:textColorHint="@color/mainText"
                 android:inputType="textEmailAddress"
-                android:paddingHorizontal="10dp" />
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/mainText"
+                android:textColorHint="@color/mainText" />
 
             <EditText
                 android:id="@+id/createItemCategory"
@@ -46,10 +47,10 @@
                 android:background="@drawable/edit_text"
                 android:ems="10"
                 android:hint="Categoria do Item"
-                android:textColor="@color/mainText"
-                android:textColorHint="@color/mainText"
                 android:inputType="textEmailAddress"
-                android:paddingHorizontal="10dp" />
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/mainText"
+                android:textColorHint="@color/mainText" />
 
             <EditText
                 android:id="@+id/createItemPrice"
@@ -59,10 +60,10 @@
                 android:background="@drawable/edit_text"
                 android:ems="10"
                 android:hint="Preço do Item"
+                android:inputType="numberDecimal"
+                android:paddingHorizontal="10dp"
                 android:textColor="@color/mainText"
-                android:textColorHint="@color/mainText"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="10dp" />
+                android:textColorHint="@color/mainText" />
 
             <EditText
                 android:id="@+id/createItemDesc"
@@ -73,10 +74,10 @@
                 android:ems="10"
                 android:gravity="top"
                 android:hint="Descrição"
-                android:textColor="@color/mainText"
-                android:textColorHint="@color/mainText"
                 android:inputType="textEmailAddress"
-                android:paddingHorizontal="10dp" />
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/mainText"
+                android:textColorHint="@color/mainText" />
 
             <Button
                 android:id="@+id/createItemButton"
@@ -84,6 +85,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/orangeButtons"
                 android:fontFamily="@font/boogaloo"
+                android:onClick="saveItem"
                 android:text="Cadastrar Item"
                 android:textColor="@color/mainText"
                 android:textSize="20sp" />
@@ -98,7 +100,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/create_image_placeholder" />
+            app:srcCompat="@drawable/create_image_placeholder" />
 
         <ImageView
             android:id="@+id/createItemImageButton"
@@ -106,6 +108,7 @@
             android:layout_height="55dp"
             android:layout_marginTop="244dp"
             android:layout_marginEnd="8dp"
+            android:onClick="getItemImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/createItemImage"
             app:srcCompat="@drawable/add_image_button" />
