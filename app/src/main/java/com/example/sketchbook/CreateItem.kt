@@ -12,6 +12,9 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
@@ -20,6 +23,8 @@ import java.util.UUID
 class CreateItem : AppCompatActivity() {
     private lateinit var itemPic: ImageView
     lateinit var storage: FirebaseStorage
+    private lateinit var auth: FirebaseAuth
+    private var currentUser: FirebaseUser? = null
 
     // item data ----------------------
     private lateinit var nome: EditText
@@ -40,9 +45,19 @@ class CreateItem : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_create_item)
+
+        auth = FirebaseAuth.getInstance()
 
         storage = Firebase.storage
+
+        if(auth.currentUser == null){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+        currentUser = auth.currentUser
+
+        setContentView(R.layout.activity_create_item)
 
         itemPic = findViewById(R.id.createItemImage)
         nome = findViewById(R.id.createItemName)
@@ -64,14 +79,38 @@ class CreateItem : AppCompatActivity() {
         }
         val storageRef = storage.reference
         val imgFolder = storageRef.child("imagens")
-        val imgRef = imgFolder.child(UUID.randomUUID().toString())
+        val imgName = UUID.randomUUID().toString()
+        val imgRef = imgFolder.child(imgName)
 
         val uploadTask = imgRef.putFile(itemImage!!)
 
         uploadTask.addOnFailureListener { task ->
-            Log.d("PDM", "deu erro: " + task.message)
+            Log.w("PDM", "deu erro: " + task.message)
+            Toast.makeText(baseContext, "Erro:" + task.message,
+                Toast.LENGTH_LONG).show()
         }.addOnSuccessListener { taskSnapshot ->
             Log.d("PDM", "deu certo")
+            setItemAditionalData(imgName)
         }
+    }
+
+    private fun setItemAditionalData(imgName: String) {
+        val mydb = FirebaseDatabase.getInstance().reference
+        val desenhos = mydb.child("desenhos")
+        val desenhoID = UUID.randomUUID().toString()
+        val desenho = desenhos.child(desenhoID)
+
+        desenho.child("image").setValue(imgName)
+        desenho.child("nome").setValue(nome.text.toString())
+        desenho.child("categoria").setValue(categoria.text.toString())
+        desenho.child("preço").setValue(preco.text.toString())
+        desenho.child("descrição").setValue(description.text.toString())
+        desenho.child("usuario").setValue(currentUser?.uid.toString())
+
+        Toast.makeText(baseContext, "Item criado com sucesso!!!",
+            Toast.LENGTH_SHORT).show()
+
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
     }
 }
