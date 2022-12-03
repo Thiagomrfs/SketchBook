@@ -48,6 +48,7 @@
         android:layout_weight="1"
         android:backgroundTint="#371D0E"
         android:contentDescription="go to create item"
+        android:onClick="goToCriarDesenho"
         android:textSize="60sp"
         app:cornerRadius="60dp"
         app:icon="@android:drawable/ic_menu_add"

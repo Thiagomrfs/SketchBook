@@ -21,8 +21,18 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+
         auth = FirebaseAuth.getInstance()
+        val currentUser = auth.currentUser
+        if(currentUser != null){
+            val intent = Intent(this, Galery::class.java)
+            startActivity(intent)
+        }
+
+
+        setContentView(R.layout.activity_main)
+
 
         email = findViewById(R.id.editTextEmail)
         senha = findViewById(R.id.editTextPassword)
