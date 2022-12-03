@@ -15,10 +15,15 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import java.net.URI
+import java.util.*
 
 class CreateAccount : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private lateinit var storage: FirebaseStorage
     private lateinit var profilePic: ImageView
 
     // campos do form ---------------
@@ -26,7 +31,7 @@ class CreateAccount : AppCompatActivity() {
     private lateinit var endereco: EditText
     private lateinit var telefone: EditText
     private lateinit var senha: EditText
-    private lateinit var profilePicture: Uri
+    private var profilePicture: Uri? = null
     // -----------------------------
 
     private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -35,6 +40,7 @@ class CreateAccount : AppCompatActivity() {
             Log.d("PDM", response?.data?.path.toString())
 
             profilePic.setImageURI(response?.data)
+            profilePicture = response?.data
         }
     }
 
@@ -42,6 +48,7 @@ class CreateAccount : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
         auth = FirebaseAuth.getInstance()
+        storage = Firebase.storage
 
         profilePic = findViewById(R.id.profileImage)
         email = findViewById(R.id.editTextNewEmail)
@@ -56,6 +63,12 @@ class CreateAccount : AppCompatActivity() {
     }
 
     fun createAccount(v: View) {
+        if (profilePicture == null) {
+            Toast.makeText(baseContext, "É necessária uma foto de perfil para criar um usuário.",
+                Toast.LENGTH_SHORT).show()
+            return
+        }
+
         auth.createUserWithEmailAndPassword(email.text.toString(), senha.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -74,11 +87,26 @@ class CreateAccount : AppCompatActivity() {
         val mydb = FirebaseDatabase.getInstance().reference
         val usuarios = mydb.child("usuarios")
 
-        if (!endereco.text.isNullOrEmpty()) {
-            usuarios.child(uid).child("endereço").setValue(endereco.text.toString())
-        }
-        if (!telefone.text.isNullOrEmpty()) {
-            usuarios.child(uid).child("telefone").setValue(telefone.text.toString())
+        val storageRef = storage.reference
+        val imgFolder = storageRef.child("userPictures")
+        val imgName = UUID.randomUUID().toString()
+        val imgRef = imgFolder.child(imgName)
+
+        val uploadTask = imgRef.putFile(profilePicture!!)
+
+        uploadTask.addOnFailureListener { task ->
+            Log.w("PDM", "deu erro: " + task.message)
+            Toast.makeText(baseContext, "Erro:" + task.message,
+                Toast.LENGTH_LONG).show()
+        }.addOnSuccessListener { taskSnapshot ->
+            if (!endereco.text.isNullOrEmpty()) {
+                usuarios.child(uid).child("endereço").setValue(endereco.text.toString())
+            }
+            if (!telefone.text.isNullOrEmpty()) {
+                usuarios.child(uid).child("telefone").setValue(telefone.text.toString())
+            }
+
+            usuarios.child(uid).child("perfilImg").setValue(imgName)
         }
 
         val intent = Intent(this, MainActivity::class.java)

@@ -25,10 +25,10 @@ class MainActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
-        if(currentUser != null){
-            val intent = Intent(this, Galery::class.java)
-            startActivity(intent)
-        }
+//        if(currentUser != null){
+//            val intent = Intent(this, Galery::class.java)
+//            startActivity(intent)
+//        }
 
 
         setContentView(R.layout.activity_main)
