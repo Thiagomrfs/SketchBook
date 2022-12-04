@@ -41,11 +41,14 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text"
                 android:clickable="false"
+                android:contextClickable="false"
                 android:editable="false"
                 android:ems="10"
+                android:fontFamily="@font/paprika"
                 android:hint="Nome do Item"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="10dp" />
+                android:inputType="none"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/mainText" />
 
             <TextView
                 android:id="@+id/categoryLabel"
@@ -64,11 +67,14 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text"
                 android:clickable="false"
+                android:contextClickable="false"
                 android:editable="false"
                 android:ems="10"
+                android:fontFamily="@font/paprika"
                 android:hint="Categoria do Item"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="10dp" />
+                android:inputType="none"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/mainText" />
 
             <TextView
                 android:id="@+id/priceLabel"
@@ -87,11 +93,14 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text"
                 android:clickable="false"
+                android:contextClickable="false"
                 android:editable="false"
                 android:ems="10"
+                android:fontFamily="@font/paprika"
                 android:hint="Preço do Item"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="10dp" />
+                android:inputType="none"
+                android:paddingHorizontal="10dp"
+                android:textColor="@color/mainText" />
 
             <TextView
                 android:id="@+id/descLabel"
@@ -110,12 +119,16 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text"
                 android:clickable="false"
+                android:contextClickable="false"
                 android:editable="false"
                 android:ems="10"
+                android:fontFamily="@font/paprika"
                 android:gravity="top"
                 android:hint="Descrição"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="10dp" />
+                android:inputType="none"
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="10dp"
+                android:textColor="@color/mainText" />
 
         </LinearLayout>
 

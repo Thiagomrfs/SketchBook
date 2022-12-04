@@ -22,17 +22,11 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-
+        //Inicializando firebase
         auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
-//        if(currentUser != null){
-//            val intent = Intent(this, Galery::class.java)
-//            startActivity(intent)
-//        }
-
 
         setContentView(R.layout.activity_main)
-
 
         email = findViewById(R.id.editTextEmail)
         senha = findViewById(R.id.editTextPassword)
@@ -43,6 +37,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+    //Realiza login
     fun checarLogin(v: View) {
         auth.signInWithEmailAndPassword(email.text.toString(), senha.text.toString())
             .addOnCompleteListener(this) { task ->

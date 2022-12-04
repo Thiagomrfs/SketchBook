@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,23 +19,22 @@ import java.util.Objects
 import kotlin.reflect.typeOf
 
 
-class Galery : AppCompatActivity() {
+class Galery : AppCompatActivity(), OnItemClickListener {
     private lateinit var auth: FirebaseAuth
 
-    private  var listItems : MutableList<Item> = mutableListOf()
-
-
+    //Informações dos desenhos puxados do banco
+    var listItems : MutableList<Item> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_galery)
         auth = FirebaseAuth.getInstance()
 
+        //Lista de desenhos
         var recyclerViewGalery : RecyclerView = findViewById(R.id.recyclerViewGalery)
-
         recyclerViewGalery.layoutManager = LinearLayoutManager(this)
-
-
 
 
 
@@ -43,6 +43,7 @@ class Galery : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //Query de acesso aos desenhos a partir do ID do usuário
         val mydb = FirebaseDatabase.getInstance().reference
         val desenhos = mydb.child("desenhos")
 
@@ -50,34 +51,25 @@ class Galery : AppCompatActivity() {
             .orderByChild("usuario")
             .equalTo(auth.currentUser?.uid.toString())
 
-//        desenhosFiltrados.addChildEventListener(object : ChildEventListener {
-//            override fun onChildAdded(dataSnapshot: DataSnapshot, s: String?) {}
-//            override fun onChildChanged(dataSnapshot: DataSnapshot, s: String?) {}
-//            override fun onChildRemoved(dataSnapshot: DataSnapshot) {}
-//            override fun onChildMoved(dataSnapshot: DataSnapshot, s: String?) {}
-//            override fun onCancelled(databaseError: DatabaseError) {}
-//        })
 
-
+        //Resgatando desenhos do banco e passando para a lista
         desenhosFiltrados.get().addOnSuccessListener {
-//            Log.d("PDM", "Got value ${it.value}")
-
             for(valor in it.children){
-                var image = valor.child("image").getValue(String::class.java)
+                var imagem = valor.child("image").getValue(String::class.java)
                 var descricao = valor.child("descrição").getValue(String::class.java)
                 var preco = "R$ " + valor.child("preço").getValue(String::class.java)
                 var categoria = valor.child("categoria").getValue(String::class.java)
                 var nome = valor.child("nome").getValue(String::class.java)
 
-                var item = Item(image!!,descricao,preco,categoria,nome!!)
-
+                var item = Item(imagem!!,descricao,preco,categoria,nome!!)
                 listItems += item
 
             }
 
-            var adapter = ItemAdapter(listItems)
-
+            //Configurando recycler view com novos desenhos
+            var adapter = ItemAdapter(listItems, this)
             recyclerViewGalery.adapter = adapter
+            adapter.notifyDataSetChanged()
 
 
         }.addOnFailureListener{
@@ -85,19 +77,23 @@ class Galery : AppCompatActivity() {
         }
 
 
-
-
-
-
-
-
-
-
-
     }
 
+    //Ir para página de visualização de desenho
     fun goToCriarDesenho(v: View){
         val intent = Intent(this, CreateItem::class.java)
+        startActivity(intent)
+    }
+
+    //Carrega atividade para desenho clicado com suas informações
+    override fun onItemClicked(position: Int) {
+        super.onItemClicked(position)
+        val intent = Intent(this, ViewItem::class.java)
+        intent.putExtra("nome", listItems[position].nome)
+        intent.putExtra("descricao", listItems[position].descricao)
+        intent.putExtra("categoria", listItems[position].categoria)
+        intent.putExtra("preco", listItems[position].preco)
+        intent.putExtra("imagem", listItems[position].image)
         startActivity(intent)
     }
 }
