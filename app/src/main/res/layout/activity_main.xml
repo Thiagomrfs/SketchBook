@@ -55,6 +55,7 @@
             android:hint="E-mail"
             android:inputType="textEmailAddress"
             android:paddingHorizontal="10dp"
+            android:text="igor@gmail.com"
             android:textColor="@color/mainText"
             android:textColorHint="@color/mainText" />
 
@@ -68,6 +69,7 @@
             android:hint="Senha"
             android:inputType="textPassword"
             android:paddingHorizontal="10dp"
+            android:text="123456"
             android:textColor="@color/mainText"
             android:textColorHint="@color/mainText" />
 

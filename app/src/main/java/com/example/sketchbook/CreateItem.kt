@@ -110,7 +110,7 @@ class CreateItem : AppCompatActivity() {
         Toast.makeText(baseContext, "Item criado com sucesso!!!",
             Toast.LENGTH_SHORT).show()
 
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, Galery::class.java)
         startActivity(intent)
     }
 }

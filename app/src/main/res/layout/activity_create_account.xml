@@ -112,16 +112,17 @@
             android:id="@+id/returnLoginButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="4dp"
             android:clickable="true"
             android:fontFamily="@font/boogaloo"
+            android:minHeight="48dp"
             android:onClick="goToLogin"
             android:text="@string/return_login"
             android:textColor="#CC371D0E"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.cardview.widget.CardView
@@ -138,6 +139,7 @@
                 android:id="@+id/profileImage"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:scaleType="fitCenter"
                 tools:srcCompat="@tools:sample/avatars" />
 
         </androidx.cardview.widget.CardView>
@@ -145,10 +147,11 @@
         <ImageView
             android:id="@+id/addProfileImageButton"
             android:layout_width="53dp"
-            android:layout_height="36dp"
+            android:layout_height="48dp"
             android:layout_gravity="bottom|right"
             android:layout_marginTop="110dp"
             android:clickable="true"
+            android:contentDescription="add profile photo"
             android:elevation="2dp"
             android:onClick="getImage"
             app:layout_constraintEnd_toEndOf="@+id/cardView"
