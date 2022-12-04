@@ -2,6 +2,7 @@ package com.example.sketchbook
 
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,8 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sketchbook.model.Item
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 class ItemAdapter(private val items: MutableList<Item>, private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<ItemAdapter.ViewHolder>(){
@@ -46,11 +49,16 @@ class ItemAdapter(private val items: MutableList<Item>, private val onItemClickL
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
+        val storageReference = Firebase.storage.reference
+        Log.w("PDM", item.image)
 
         //Seta informações dos elementos do card
         holder.nome.text = item.nome
         holder.preco.text = item.preco
         holder.categoria.text = item.categoria
+        GlideApp.with(holder.itemView)
+            .load(storageReference.child("imagens").child(item.image))
+            .into(holder.image)
 
         //Executa função para clique nos elementos
         holder.itemView.setOnClickListener{
