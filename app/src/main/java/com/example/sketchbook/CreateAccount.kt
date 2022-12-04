@@ -47,6 +47,8 @@ class CreateAccount : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_account)
+
+        //Inicializando e referenciando firebase storage
         auth = FirebaseAuth.getInstance()
         storage = Firebase.storage
 
@@ -69,6 +71,7 @@ class CreateAccount : AppCompatActivity() {
             return
         }
 
+        //Cria conta (email/senha) com método do firebase
         auth.createUserWithEmailAndPassword(email.text.toString(), senha.text.toString())
             .addOnCompleteListener(this) { task ->
                 if (task.isSuccessful) {
@@ -83,6 +86,7 @@ class CreateAccount : AppCompatActivity() {
             }
     }
 
+    //Carrega outras informações setadas do usuário
     private fun setUserAditionalData(uid: String) {
         val mydb = FirebaseDatabase.getInstance().reference
         val usuarios = mydb.child("usuarios")
@@ -113,6 +117,8 @@ class CreateAccount : AppCompatActivity() {
         startActivity(intent)
     }
 
+
+    //Inicia atividade de login
     fun goToLogin(v: View){
         val intent = Intent(this, MainActivity::class.java).apply{}
         startActivity(intent)

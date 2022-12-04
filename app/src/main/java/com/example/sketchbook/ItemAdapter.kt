@@ -1,7 +1,7 @@
 package com.example.sketchbook
 
 
-import android.content.Intent
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +11,12 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sketchbook.model.Item
 
-class ItemAdapter(private val items: MutableList<Item>) : RecyclerView.Adapter<ItemAdapter.ViewHolder>(){
+
+class ItemAdapter(private val items: MutableList<Item>, private val onItemClickListener: OnItemClickListener) : RecyclerView.Adapter<ItemAdapter.ViewHolder>(){
+
+
+    val context: Context? = null
+
 
     // Criação de Novos ViewHolders
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -22,26 +27,35 @@ class ItemAdapter(private val items: MutableList<Item>) : RecyclerView.Adapter<I
         return ViewHolder(view)
     }
 
-    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView) {
+    class ViewHolder(ItemView: View) : RecyclerView.ViewHolder(ItemView), View.OnClickListener {
+
+        //Elementos do layout do card
         val image: ImageView = ItemView.findViewById(R.id.recyclerItemImage)
         val nome: TextView = ItemView.findViewById(R.id.recyclerItemName)
         val categoria: TextView = ItemView.findViewById(R.id.recyclerItemCategory)
         val preco: TextView = ItemView.findViewById(R.id.recyclerItemPrice)
         val inCell: LinearLayout = ItemView.findViewById(R.id.inCell)
-    }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val itemResgatado = items[position]
 
-        holder.nome.text = itemResgatado.nome
-        holder.preco.text = itemResgatado.preco
-        holder.categoria.text = itemResgatado.categoria
-
-        holder.inCell.setOnClickListener{
-
+        override fun onClick(v: View?) {
 
         }
 
+
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val item = items[position]
+
+        //Seta informações dos elementos do card
+        holder.nome.text = item.nome
+        holder.preco.text = item.preco
+        holder.categoria.text = item.categoria
+
+        //Executa função para clique nos elementos
+        holder.itemView.setOnClickListener{
+                onItemClickListener.onItemClicked(position)
+        }
 
     }
 
