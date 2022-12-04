@@ -8,6 +8,7 @@
     tools:context=".Galery">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="0dp"
         android:layout_height="60dp"
         android:background="#6B5237"
@@ -20,7 +21,7 @@
 
         <TextView
             android:id="@+id/labelGalery"
-            android:layout_width="307dp"
+            android:layout_width="286dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:fontFamily="@font/boogaloo"
@@ -28,14 +29,22 @@
             android:textColor="#F8ECE1"
             android:textSize="34sp" />
 
-        <ImageButton
-            android:id="@+id/openSearchButton"
-            android:layout_width="21dp"
-            android:layout_height="48dp"
+        <androidx.cardview.widget.CardView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="#371D0E"
-            android:contentDescription="search item"
-            app:srcCompat="@android:drawable/ic_menu_search" />
+            app:cardCornerRadius="15dp">
+
+            <ImageButton
+                android:id="@+id/openSearchButton"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_weight="1"
+                android:background="#371D0E"
+                android:contentDescription="search item"
+                android:tintMode="src_in"
+                app:srcCompat="@android:drawable/ic_menu_search" />
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
@@ -51,12 +60,22 @@
         android:onClick="goToCriarDesenho"
         android:textSize="60sp"
         app:cornerRadius="60dp"
-        app:icon="@android:drawable/ic_menu_add"
+        app:icon="@drawable/plus"
         app:iconGravity="textStart"
         app:iconPadding="0dp"
-        app:iconSize="80dp"
-        app:iconTint="#FFFFFF"
+        app:iconSize="40dp"
+        app:iconTint="#F8ECE1"
         app:iconTintMode="src_in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewGalery"
+        android:layout_width="415dp"
+        android:layout_height="689dp"
+        android:paddingHorizontal="20dp"
+        android:paddingVertical="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 </androidx.constraintlayout.widget.ConstraintLayout>
