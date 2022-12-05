@@ -15,14 +15,14 @@
         tools:layout_editor_absoluteY="32dp">
 
         <LinearLayout
-            android:layout_width="380dp"
-            android:layout_height="486dp"
+            android:layout_width="355dp"
+            android:layout_height="461dp"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/viewItemImage">
+            app:layout_constraintHorizontal_bias="0.516"
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/nameLabel"
@@ -136,11 +136,21 @@
             android:id="@+id/viewItemImage"
             android:layout_width="0dp"
             android:layout_height="250dp"
-            android:scaleType="centerCrop"
+            android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:srcCompat="@color/card" />
+
+        <ImageButton
+            android:id="@+id/shareImageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#00FFFFFF"
+            android:contentDescription="share image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/viewItemImage"
+            app:srcCompat="@drawable/share_button" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

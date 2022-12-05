@@ -15,16 +15,25 @@
         tools:layout_editor_absoluteY="-16dp">
 
         <LinearLayout
-            android:layout_width="380dp"
-            android:layout_height="406dp"
-            android:layout_marginBottom="24dp"
+            android:layout_width="355dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
             android:gravity="center"
             android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.483"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/createItemImage">
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                android:id="@+id/nameLabel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="Nome"
+                android:textColor="#B3371D0E"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/createItemName"
@@ -32,12 +41,24 @@
                 android:layout_height="48dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text"
+                android:clickable="false"
                 android:ems="10"
-                android:hint="Nome do Item"
+                android:fontFamily="@font/paprika"
+                android:hint="Ex: Naruto"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="10dp"
                 android:textColor="@color/mainText"
-                android:textColorHint="@color/mainText" />
+                android:textColorHint="#9A371D0E" />
+
+            <TextView
+                android:id="@+id/categoryLabel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="Categoria"
+                android:textColor="#B3371D0E"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/createItemCategory"
@@ -45,12 +66,24 @@
                 android:layout_height="48dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text"
+                android:clickable="false"
                 android:ems="10"
-                android:hint="Categoria do Item"
+                android:fontFamily="@font/paprika"
+                android:hint="Ex: Anime"
                 android:inputType="textEmailAddress"
                 android:paddingHorizontal="10dp"
                 android:textColor="@color/mainText"
-                android:textColorHint="@color/mainText" />
+                android:textColorHint="#99371D0E" />
+
+            <TextView
+                android:id="@+id/priceLabel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="Preço de Compra"
+                android:textColor="#B3371D0E"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/createItemPrice"
@@ -58,27 +91,41 @@
                 android:layout_height="48dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text"
+                android:clickable="false"
                 android:ems="10"
-                android:hint="Preço do Item"
+                android:fontFamily="@font/paprika"
+                android:hint="Ex: 120.50"
                 android:inputType="numberDecimal"
                 android:paddingHorizontal="10dp"
                 android:textColor="@color/mainText"
-                android:textColorHint="@color/mainText" />
+                android:textColorHint="#99371D0E" />
+
+            <TextView
+                android:id="@+id/descLabel2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="2dp"
+                android:fontFamily="@font/boogaloo"
+                android:text="Descrição"
+                android:textColor="#B3371D0E"
+                android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/createItemDesc"
                 android:layout_width="match_parent"
                 android:layout_height="136dp"
-                android:layout_marginBottom="15dp"
+                android:layout_marginBottom="5dp"
                 android:background="@drawable/edit_text"
+                android:clickable="true"
                 android:ems="10"
+                android:fontFamily="@font/paprika"
                 android:gravity="top"
-                android:hint="Descrição"
-                android:inputType="textEmailAddress"
+                android:hint="Ex: Personagem principal do anime naruto"
+                android:inputType="textMultiLine"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="10dp"
                 android:textColor="@color/mainText"
-                android:textColorHint="@color/mainText" />
+                android:textColorHint="#99371D0E" />
 
             <Button
                 android:id="@+id/createItemButton"
@@ -95,8 +142,8 @@
 
         <ImageView
             android:id="@+id/createItemImage"
-            android:layout_width="411dp"
-            android:layout_height="274dp"
+            android:layout_width="421dp"
+            android:layout_height="269dp"
             android:scaleType="centerCrop"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -107,7 +154,7 @@
             android:id="@+id/createItemImageButton"
             android:layout_width="60dp"
             android:layout_height="55dp"
-            android:layout_marginTop="244dp"
+            android:layout_marginTop="240dp"
             android:layout_marginEnd="8dp"
             android:contentDescription="upload item image"
             android:onClick="getItemImage"
