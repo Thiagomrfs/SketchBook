@@ -10,7 +10,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#EAD4BD"
-        tools:context=".MainActivity"
         tools:layout_editor_absoluteX="-45dp"
         tools:layout_editor_absoluteY="40dp">
 

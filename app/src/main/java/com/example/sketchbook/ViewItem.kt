@@ -2,6 +2,7 @@ package com.example.sketchbook
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -32,5 +33,9 @@ class ViewItem : AppCompatActivity() {
         GlideApp.with(this /* context */)
             .load(storageReference.child("imagens").child(intent.getStringExtra("imagem").toString()))
             .into(itemImage)
+    }
+
+    fun goToShare(v: View) {
+
     }
 }
