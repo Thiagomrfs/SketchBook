@@ -11,14 +11,12 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
-import java.net.URI
 import java.util.*
 
 class CreateAccount : AppCompatActivity() {
@@ -53,7 +51,7 @@ class CreateAccount : AppCompatActivity() {
         storage = Firebase.storage
 
         profilePic = findViewById(R.id.profileImage)
-        email = findViewById(R.id.editTextNewEmail)
+        email = findViewById(R.id.editTextCodigoImagem)
         endereco = findViewById(R.id.editTextAddress)
         telefone = findViewById(R.id.editTextPhone)
         senha = findViewById(R.id.editTextNewPassword)
