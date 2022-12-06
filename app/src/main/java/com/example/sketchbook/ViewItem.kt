@@ -1,7 +1,9 @@
 package com.example.sketchbook
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
@@ -36,6 +38,8 @@ class ViewItem : AppCompatActivity() {
     }
 
     fun goToShare(v: View) {
-
+        val newIntent = Intent(this, ShareItem::class.java)
+        newIntent.putExtra("item_code", intent.getStringExtra("item_code"))
+        startActivity(newIntent)
     }
 }

@@ -55,19 +55,20 @@ class Galery : AppCompatActivity(), OnItemClickListener {
         //Resgatando desenhos do banco e passando para a lista
         desenhosFiltrados.get().addOnSuccessListener {
             for(valor in it.children){
-                var imagem = valor.child("image").getValue(String::class.java)
-                var descricao = valor.child("descrição").getValue(String::class.java)
-                var preco = "R$ " + valor.child("preço").getValue(String::class.java)
-                var categoria = valor.child("categoria").getValue(String::class.java)
-                var nome = valor.child("nome").getValue(String::class.java)
+                val imagem = valor.child("image").getValue(String::class.java)
+                val descricao = valor.child("descrição").getValue(String::class.java)
+                val preco = "R$ " + valor.child("preço").getValue(String::class.java)
+                val categoria = valor.child("categoria").getValue(String::class.java)
+                val nome = valor.child("nome").getValue(String::class.java)
+                val id = valor.key.toString()
 
-                var item = Item(imagem!!,descricao,preco,categoria,nome!!)
+                val item = Item(id, imagem!!, descricao, preco, categoria, nome!!)
                 listItems += item
 
             }
 
             //Configurando recycler view com novos desenhos
-            var adapter = ItemAdapter(listItems, this)
+            val adapter = ItemAdapter(listItems, this)
             recyclerViewGalery.adapter = adapter
             adapter.notifyDataSetChanged()
 
@@ -94,6 +95,7 @@ class Galery : AppCompatActivity(), OnItemClickListener {
         intent.putExtra("categoria", listItems[position].categoria)
         intent.putExtra("preco", listItems[position].preco)
         intent.putExtra("imagem", listItems[position].image)
+        intent.putExtra("item_code", listItems[position].id)
         startActivity(intent)
     }
 }
