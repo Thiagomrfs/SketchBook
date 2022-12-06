@@ -80,11 +80,6 @@ class Galery : AppCompatActivity(), OnItemClickListener {
 
     }
 
-    //Ir para página de visualização de desenho
-    fun goToCriarDesenho(v: View){
-        val intent = Intent(this, CreateItem::class.java)
-        startActivity(intent)
-    }
 
     //Carrega atividade para desenho clicado com suas informações
     override fun onItemClicked(position: Int) {
@@ -96,6 +91,17 @@ class Galery : AppCompatActivity(), OnItemClickListener {
         intent.putExtra("preco", listItems[position].preco)
         intent.putExtra("imagem", listItems[position].image)
         intent.putExtra("item_code", listItems[position].id)
+        startActivity(intent)
+    }
+
+    //Ir para página de visualização de desenho
+    fun goToCriarDesenho(v: View){
+        val intent = Intent(this, CreateItem::class.java)
+        startActivity(intent)
+    }
+
+    fun goToSearch(v: View){
+        val intent = Intent(this, SearchItem::class.java)
         startActivity(intent)
     }
 }

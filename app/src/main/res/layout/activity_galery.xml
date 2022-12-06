@@ -42,6 +42,7 @@
                 android:layout_weight="1"
                 android:background="#371D0E"
                 android:contentDescription="search item"
+                android:onClick="goToSearch"
                 android:tintMode="src_in"
                 app:srcCompat="@android:drawable/ic_menu_search" />
         </androidx.cardview.widget.CardView>
