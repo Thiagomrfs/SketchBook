@@ -26,6 +26,10 @@ class Galery : AppCompatActivity(), OnItemClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_galery)
         auth = FirebaseAuth.getInstance()
+        if(auth.currentUser == null){
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
 
         profilePic = findViewById(R.id.galleryProfileImage)
 

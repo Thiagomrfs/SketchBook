@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
 
         //Inicializando firebase
         auth = FirebaseAuth.getInstance()
-        val currentUser = auth.currentUser
 
         setContentView(R.layout.activity_main)
 
