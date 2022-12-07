@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.sketchbook.model.Item
@@ -15,6 +16,7 @@ import com.google.firebase.database.FirebaseDatabase
 
 class Galery : AppCompatActivity(), OnItemClickListener {
     private lateinit var auth: FirebaseAuth
+    private lateinit var profilePic: ImageView
 
     //Informações dos desenhos puxados do banco
     var listItems : MutableList<Item> = mutableListOf()
@@ -25,6 +27,8 @@ class Galery : AppCompatActivity(), OnItemClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_galery)
         auth = FirebaseAuth.getInstance()
+
+        profilePic = findViewById(R.id.galleryProfileImage)
 
         //Lista de desenhos
         var recyclerViewGalery : RecyclerView = findViewById(R.id.recyclerViewGalery)
@@ -101,6 +105,12 @@ class Galery : AppCompatActivity(), OnItemClickListener {
     //Inicia atividade de busca
     fun goToSearch(v: View){
         val intent = Intent(this, SearchItem::class.java)
+        startActivity(intent)
+    }
+
+    //Ir para a página de perfil
+    fun goToProfile(v: View){
+        val intent = Intent(this, Profile::class.java)
         startActivity(intent)
     }
 }

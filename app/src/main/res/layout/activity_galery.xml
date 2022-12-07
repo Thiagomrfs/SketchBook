@@ -19,6 +19,22 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            app:cardCornerRadius="80dp">
+
+            <ImageView
+                android:id="@+id/galleryProfileImage"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:onClick="goToProfile"
+                android:scaleType="fitCenter"
+                tools:srcCompat="@tools:sample/avatars" />
+
+        </androidx.cardview.widget.CardView>
+
         <TextView
             android:id="@+id/labelGalery"
             android:layout_width="286dp"
@@ -26,6 +42,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/boogaloo"
             android:text="Minha Galeria"
+            android:textAlignment="center"
             android:textColor="#F8ECE1"
             android:textSize="34sp" />
 

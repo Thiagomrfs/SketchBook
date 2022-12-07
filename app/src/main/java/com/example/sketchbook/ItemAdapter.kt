@@ -50,7 +50,6 @@ class ItemAdapter(private val items: MutableList<Item>, private val onItemClickL
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = items[position]
         val storageReference = Firebase.storage.reference
-        Log.w("PDM", item.image)
 
         //Seta informações dos elementos do card
         holder.nome.text = item.nome
