@@ -85,11 +85,10 @@ class CreateItem : AppCompatActivity() {
         val uploadTask = imgRef.putFile(itemImage!!)
 
         uploadTask.addOnFailureListener { task ->
-            Log.w("PDM", "deu erro: " + task.message)
+            Log.w("PDM", "Erro no upload: " + task.message)
             Toast.makeText(baseContext, "Erro:" + task.message,
                 Toast.LENGTH_LONG).show()
         }.addOnSuccessListener { taskSnapshot ->
-            Log.d("PDM", "deu certo")
             setItemAditionalData(imgName)
         }
     }

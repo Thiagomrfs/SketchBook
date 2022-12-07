@@ -97,16 +97,17 @@ class CreateAccount : AppCompatActivity() {
         val uploadTask = imgRef.putFile(profilePicture!!)
 
         uploadTask.addOnFailureListener { task ->
-            Log.w("PDM", "deu erro: " + task.message)
+            Log.w("PDM", "Erro no upload: " + task.message)
             Toast.makeText(baseContext, "Erro:" + task.message,
                 Toast.LENGTH_LONG).show()
         }.addOnSuccessListener { taskSnapshot ->
             if (!endereco.text.isNullOrEmpty()) {
                 usuarios.child(uid).child("endereço").setValue(endereco.text.toString())
-            }
+            } else usuarios.child(uid).child("endereço").setValue("indefinido");
+
             if (!telefone.text.isNullOrEmpty()) {
                 usuarios.child(uid).child("telefone").setValue(telefone.text.toString())
-            }
+            } else usuarios.child(uid).child("endereço").setValue("indefinido");
 
             usuarios.child(uid).child("perfilImg").setValue(imgName)
         }

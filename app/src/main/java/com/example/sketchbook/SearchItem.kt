@@ -48,7 +48,6 @@ class SearchItem : AppCompatActivity(){
                     //Recuperando dados do item e passando para próxima atividade
                     desenho.get().addOnSuccessListener {
                         intent.putExtra("nome", it.child("nome").value.toString())
-                        Log.d("PDM", it.child("nome").value.toString())
                         intent.putExtra("categoria", it.child("categoria").value.toString())
                         intent.putExtra("preco", it.child("preço").value.toString())
                         intent.putExtra("descricao", it.child("descrição").value.toString())
@@ -73,7 +72,6 @@ class SearchItem : AppCompatActivity(){
 
         desenho.get().addOnSuccessListener {
             intent.putExtra("nome", it.child("nome").value.toString())
-            Log.d("PDM", it.child("nome").value.toString())
             intent.putExtra("categoria", it.child("categoria").value.toString())
             intent.putExtra("preco", it.child("preço").value.toString())
             intent.putExtra("descricao", it.child("descrição").value.toString())
