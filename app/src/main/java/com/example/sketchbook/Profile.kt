@@ -13,6 +13,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
@@ -64,5 +65,11 @@ class Profile : AppCompatActivity() {
                         .child(it.child("perfilImg").value.toString()))
                 .into(profilePic)
         }
+    }
+
+    fun logout(v: View) {
+        Firebase.auth.signOut()
+        val intent = Intent(this, MainActivity::class.java).apply{}
+        startActivity(intent)
     }
 }

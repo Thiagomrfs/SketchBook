@@ -2,4 +2,5 @@
     <string name="app_name">Sketch Book</string>
     <string name="new_account"><u>Cadastrar nova conta</u></string>
     <string name="return_login"><u>Fazer login</u></string>
+    <string name="logout"><u>Fazer logout</u></string>
 </resources>
