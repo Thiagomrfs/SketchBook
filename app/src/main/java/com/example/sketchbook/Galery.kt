@@ -11,7 +11,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.sketchbook.model.Item
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 
 
 class Galery : AppCompatActivity(), OnItemClickListener {
@@ -22,8 +23,6 @@ class Galery : AppCompatActivity(), OnItemClickListener {
     var listItems : MutableList<Item> = mutableListOf()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_galery)
         auth = FirebaseAuth.getInstance()
@@ -41,11 +40,22 @@ class Galery : AppCompatActivity(), OnItemClickListener {
             startActivity(intent)
         }
 
-        //Query de acesso aos desenhos a partir do ID do usuário
+        //Settando imagem do usuário
+        val storageReference = Firebase.storage.reference
         val mydb = FirebaseDatabase.getInstance().reference
-        val desenhos = mydb.child("desenhos")
+        val currentUser = auth.currentUser
+        val user = mydb.child("usuarios").child(currentUser!!.uid)
 
-        Log.d("PDM", desenhos.toString())
+        user.get().addOnSuccessListener {
+            GlideApp.with(this /* context */)
+                .load(
+                    storageReference.child("userPictures")
+                        .child(it.child("perfilImg").value.toString()))
+                .into(profilePic)
+        }
+
+        //Query de acesso aos desenhos a partir do ID do usuário
+        val desenhos = mydb.child("desenhos")
 
         val desenhosFiltrados = desenhos
             .orderByChild("usuario")
