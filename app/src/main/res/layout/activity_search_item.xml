@@ -69,6 +69,7 @@
             android:layout_marginBottom="16dp"
             android:backgroundTint="@color/orangeButtons"
             android:fontFamily="@font/boogaloo"
+            android:onClick="searchItem"
             android:text="Procurar"
             android:textAlignment="center"
             android:textColor="@color/mainText"

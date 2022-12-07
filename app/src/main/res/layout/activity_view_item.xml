@@ -45,7 +45,7 @@
                 android:editable="false"
                 android:ems="10"
                 android:fontFamily="@font/paprika"
-                android:hint="Nome do Item"
+                android:hint="Vazio"
                 android:inputType="none"
                 android:paddingHorizontal="10dp"
                 android:textColor="@color/mainText" />
@@ -71,7 +71,7 @@
                 android:editable="false"
                 android:ems="10"
                 android:fontFamily="@font/paprika"
-                android:hint="Categoria do Item"
+                android:hint="Vazio"
                 android:inputType="none"
                 android:paddingHorizontal="10dp"
                 android:textColor="@color/mainText" />
@@ -97,7 +97,7 @@
                 android:editable="false"
                 android:ems="10"
                 android:fontFamily="@font/paprika"
-                android:hint="Preço do Item"
+                android:hint="Vazio"
                 android:inputType="none"
                 android:paddingHorizontal="10dp"
                 android:textColor="@color/mainText" />
@@ -124,11 +124,12 @@
                 android:ems="10"
                 android:fontFamily="@font/paprika"
                 android:gravity="top"
-                android:hint="Descrição"
+                android:hint="Vazio"
                 android:inputType="none"
                 android:paddingHorizontal="10dp"
                 android:paddingVertical="10dp"
-                android:textColor="@color/mainText" />
+                android:textColor="@color/mainText"
+                android:textColorHint="#66000000" />
 
         </LinearLayout>
 

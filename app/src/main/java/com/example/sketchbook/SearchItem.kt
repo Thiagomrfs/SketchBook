@@ -4,7 +4,9 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.database.FirebaseDatabase
@@ -55,5 +57,25 @@ class SearchItem : AppCompatActivity(){
             }
         }
     }
+
+    fun searchItem(v: View){
+        val codigoInput = findViewById<EditText>(R.id.editTextCodigoImagem)
+
+        val intent = Intent(this, ViewItem::class.java)
+        val mydb = FirebaseDatabase.getInstance().reference
+        val desenho = mydb.child("desenhos").child(codigoInput.text.toString())
+
+        desenho.get().addOnSuccessListener {
+            intent.putExtra("nome", it.child("nome").value.toString())
+            Log.d("PDM", it.child("nome").value.toString())
+            intent.putExtra("categoria", it.child("categoria").value.toString())
+            intent.putExtra("preco", it.child("preço").value.toString())
+            intent.putExtra("descricao", it.child("descrição").value.toString())
+            intent.putExtra("imagem", it.child("image").value.toString())
+            startActivity(intent)
+        }
+    }
+
+
 
 }
