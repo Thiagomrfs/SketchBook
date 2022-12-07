@@ -48,6 +48,8 @@
                 android:layout_height="48dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text"
+                android:clickable="false"
+                android:contextClickable="false"
                 android:editable="false"
                 android:ems="10"
                 android:hint="E-mail"
@@ -65,10 +67,11 @@
                 android:background="@drawable/edit_text"
                 android:ems="10"
                 android:hint="Endereço"
-                android:editable="false"
+                android:clickable="false"
+                android:contextClickable="false"
+                android:inputType="none"
                 android:textColor="@color/mainText"
                 android:textColorHint="@color/mainText"
-                android:inputType="textEmailAddress"
                 android:paddingHorizontal="10dp" />
 
             <EditText
@@ -78,11 +81,12 @@
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edit_text"
                 android:ems="10"
-                android:editable="false"
+                android:clickable="false"
+                android:contextClickable="false"
+                android:inputType="none"
                 android:hint="Número de celular"
                 android:textColor="@color/mainText"
                 android:textColorHint="@color/mainText"
-                android:inputType="phone"
                 android:paddingHorizontal="10dp" />
 
         </LinearLayout>

@@ -45,8 +45,11 @@ class Profile : AppCompatActivity() {
 
         profilePic = findViewById(R.id.profilePageImage)
         email = findViewById(R.id.profilePageEmail)
+        email.keyListener = null;
         endereco = findViewById(R.id.profilePageAddress)
+        endereco.keyListener = null;
         telefone = findViewById(R.id.profilePagePhone)
+        telefone.keyListener = null;
 
         val mydb = FirebaseDatabase.getInstance().reference
         val user = mydb.child("usuarios").child(currentUser!!.uid)
