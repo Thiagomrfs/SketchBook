@@ -3,12 +3,10 @@ package com.example.sketchbook
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.util.Log
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.zxing.integration.android.IntentIntegrator
 import com.google.zxing.integration.android.IntentResult
@@ -41,15 +39,15 @@ class SearchItem : AppCompatActivity(){
                     val mydb = FirebaseDatabase.getInstance().reference
                     val desenho = mydb.child("desenhos").child(result.contents)
 
-
-
-                    startActivity(intent)
-
-
-
-
-                    Toast.makeText(this, result.contents, Toast.LENGTH_LONG).show()
-
+                    desenho.get().addOnSuccessListener {
+                        intent.putExtra("nome", it.child("nome").value.toString())
+                        Log.d("PDM", it.child("nome").value.toString())
+                        intent.putExtra("categoria", it.child("categoria").value.toString())
+                        intent.putExtra("preco", it.child("preço").value.toString())
+                        intent.putExtra("descricao", it.child("descrição").value.toString())
+                        intent.putExtra("imagem", it.child("image").value.toString())
+                        startActivity(intent)
+                    }
 
                     }
             }else{

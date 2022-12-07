@@ -41,9 +41,13 @@ class Galery : AppCompatActivity(), OnItemClickListener {
         val mydb = FirebaseDatabase.getInstance().reference
         val desenhos = mydb.child("desenhos")
 
+        Log.d("PDM", desenhos.toString())
+
         val desenhosFiltrados = desenhos
             .orderByChild("usuario")
             .equalTo(auth.currentUser?.uid.toString())
+
+
 
 
         //Resgatando desenhos do banco e passando para a lista

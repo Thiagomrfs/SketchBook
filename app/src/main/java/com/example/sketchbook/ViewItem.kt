@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.EditText
+import android.widget.ImageButton
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.google.firebase.ktx.Firebase
@@ -25,6 +26,11 @@ class ViewItem : AppCompatActivity() {
         val itemPreco = findViewById<EditText>(R.id.viewItemPrice)
         val itemDescricao = findViewById<EditText>(R.id.viewItemDesc)
         val itemImage = findViewById<ImageView>(R.id.viewItemImage)
+        val shareImageButton = findViewById<ImageButton>(R.id.shareImageButton)
+
+        if(intent.getStringExtra("item_code") == null){
+            shareImageButton.visibility = View.GONE
+        }
 
 
         //Puxa informações do putExtra para elementos do layout
