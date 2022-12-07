@@ -25,6 +25,11 @@ class MainActivity : AppCompatActivity() {
         //Inicializando firebase
         auth = FirebaseAuth.getInstance()
 
+        if (auth.currentUser != null) {
+            val intent = Intent(this, Galery::class.java).apply{}
+            startActivity(intent)
+        }
+
         setContentView(R.layout.activity_main)
 
         email = findViewById(R.id.editTextEmail)
