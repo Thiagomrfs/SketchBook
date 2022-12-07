@@ -19,6 +19,7 @@ class SearchItem : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_item)
 
+        //Inicia Scanner
         val btnScanner = findViewById<Button>(R.id.btnLerQRCode)
         btnScanner.setOnClickListener{
             val scanner = IntentIntegrator(this)
@@ -29,6 +30,8 @@ class SearchItem : AppCompatActivity(){
 
     }
 
+
+    //Atividade sobreposta para scanner
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK){
@@ -37,10 +40,12 @@ class SearchItem : AppCompatActivity(){
                 if(result.contents == null){
                     Toast.makeText(this, "Nenhum resultado obtido!", Toast.LENGTH_LONG).show()
                 }else {
+                    //Tratando retorno
                     val intent = Intent(this, ViewItem::class.java)
                     val mydb = FirebaseDatabase.getInstance().reference
                     val desenho = mydb.child("desenhos").child(result.contents)
 
+                    //Recuperando dados do item e passando para próxima atividade
                     desenho.get().addOnSuccessListener {
                         intent.putExtra("nome", it.child("nome").value.toString())
                         Log.d("PDM", it.child("nome").value.toString())
@@ -58,6 +63,7 @@ class SearchItem : AppCompatActivity(){
         }
     }
 
+    //Recuperando item pelo código
     fun searchItem(v: View){
         val codigoInput = findViewById<EditText>(R.id.editTextCodigoImagem)
 

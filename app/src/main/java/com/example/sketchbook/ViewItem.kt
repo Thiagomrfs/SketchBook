@@ -43,6 +43,7 @@ class ViewItem : AppCompatActivity() {
             .into(itemImage)
     }
 
+    //Inicia atividade de compartilhar item
     fun goToShare(v: View) {
         val newIntent = Intent(this, ShareItem::class.java)
         newIntent.putExtra("item_code", intent.getStringExtra("item_code"))

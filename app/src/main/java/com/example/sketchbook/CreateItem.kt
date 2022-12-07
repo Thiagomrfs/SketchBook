@@ -46,19 +46,17 @@ class CreateItem : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        //Configurações firebase
         auth = FirebaseAuth.getInstance()
-
         storage = Firebase.storage
-
         if(auth.currentUser == null){
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
         }
-
         currentUser = auth.currentUser
 
-        setContentView(R.layout.activity_create_item)
 
+        setContentView(R.layout.activity_create_item)
         itemPic = findViewById(R.id.createItemImage)
         nome = findViewById(R.id.createItemName)
         preco = findViewById(R.id.createItemPrice)
@@ -66,11 +64,13 @@ class CreateItem : AppCompatActivity() {
         description = findViewById(R.id.createItemDesc)
     }
 
+    //Recuperar imagem da galeria
     fun getItemImage(v: View) {
         val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
         resultLauncher.launch(gallery)
     }
 
+    //Criar item no banco
     fun saveItem(v: View) {
         if (itemImage == null) {
             Toast.makeText(baseContext, "É necessária uma imagem para criar um item",
@@ -94,6 +94,7 @@ class CreateItem : AppCompatActivity() {
         }
     }
 
+    //Adicionar informações extras
     private fun setItemAditionalData(imgName: String) {
         val mydb = FirebaseDatabase.getInstance().reference
         val desenhos = mydb.child("desenhos")

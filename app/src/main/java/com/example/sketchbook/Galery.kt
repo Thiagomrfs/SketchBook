@@ -98,6 +98,7 @@ class Galery : AppCompatActivity(), OnItemClickListener {
         startActivity(intent)
     }
 
+    //Inicia atividade de busca
     fun goToSearch(v: View){
         val intent = Intent(this, SearchItem::class.java)
         startActivity(intent)
